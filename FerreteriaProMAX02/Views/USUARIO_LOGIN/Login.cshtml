@@ -1,0 +1,53 @@
+﻿@model FerreteriaProMAX02.Models.USUARIO_LOGIN
+@{
+    ViewBag.Title = "Login";
+}
+
+@Styles.Render("~/Content/css")
+@Styles.Render("~/bundles/bootstrap")
+@using (Html.BeginForm())
+{ }
+<link href="~/Content/SB-JS.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />`
+<body>
+    <div class="form-signin">
+
+
+        @using (Html.BeginForm("Login", "USUARIO_LOGIN", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <h2>Por favor inicie Sesión.</h2>
+            <hr />
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(m => m.Usuario, new { @class = "col-md-2 control-label" })
+
+            @Html.TextBoxFor(m => m.Usuario, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Usuario, "", new { @class = "text-danger" })
+
+
+            @Html.LabelFor(m => m.Contraseña, new { @class = "col-md-2 control-label" })
+
+            @Html.PasswordFor(m => m.Contraseña, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Contraseña, "", new { @class = "text-danger" })
+
+            <input type="submit" value="Iniciar sesión" class="btn btn-primary" />
+
+
+        }
+
+    </div>
+
+</body>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+
+}
+
+
+@{
+    Layout = null;
+
+}

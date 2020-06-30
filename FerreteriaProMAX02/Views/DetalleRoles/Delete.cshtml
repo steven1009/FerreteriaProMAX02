@@ -1,0 +1,48 @@
+﻿@model FerreteriaProMAX02.Models.DetalleRole
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DetalleRole</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaMOD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaMOD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USUARIO_LOGIN.Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USUARIO_LOGIN.Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role.Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

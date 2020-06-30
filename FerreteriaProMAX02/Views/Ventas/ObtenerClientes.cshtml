@@ -1,0 +1,93 @@
+﻿<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+@model IEnumerable<FerreteriaProMAX02.Models.Persona>
+@{
+    ViewBag.Title = "Obtener Clientes";
+    Layout = null;
+}
+
+<h2>ObtenerClientes</h2>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#tbcliente tbody tr").dblclick(function () {
+            var Cliente = {};
+            var n, a, m;
+            n = Cliente.Codigo = $(this).children().eq('0').text();
+            a = Cliente.DatosPersonales = $(this).children().eq('2').text() + " " + $(this).children().eq('3').text();
+            m = Cliente.Identificacion = $(this).children().eq('1').text();
+            console.info(a, n, m);
+            window.opener.obtenerCliente(Cliente);
+            window.close();
+
+
+
+        });
+    });
+</script>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Buscar Clientes en el Sistema</div>
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            <div class="form-horizontal">
+                <h2 style="text-align:center; font-family:Arial; font-weight:700;">Buscar Cliente por:</h2>
+                <fieldset>
+                    <div class="row" style="padding-bottom:8px;">
+                        <div class="form-group col-md-3">
+                            @Html.Label("Nombre", new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.TextBox("txtnombre", null, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.Label("Codigo", new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.TextBox("txtcliente", null, new { @class = "form-control", @type = "number" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.Label("DNI", new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.TextBox("txtdni", null, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.Label("Ap.Paterno", new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.TextBox("txtappaterno", null, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <input type="submit" value="Buscar" />
+        }
+    </div>
+</div>
+<table class="table table-striped" id="tbcliente">
+    <tr>
+        <th>Codigo</th>
+        <th>Cedula</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Codigo</td>
+                <td>@item.Cedula</td>
+                <td>@item.nombre</td>
+                <td>@item.Primer_Apellido</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquey/jquery.min.js"></script>

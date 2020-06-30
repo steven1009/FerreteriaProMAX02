@@ -1,0 +1,61 @@
+﻿@model IEnumerable<FerreteriaProMAX02.Models.Producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Productos</h2>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">
+        Crear Nuevo
+        <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+    </a>
+   
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stok)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrecioU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marca.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stok)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecioU)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marca.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdProducto }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdProducto }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdProducto })
+        </td>
+    </tr>
+}
+
+</table>
