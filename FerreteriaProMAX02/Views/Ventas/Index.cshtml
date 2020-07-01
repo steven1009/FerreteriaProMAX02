@@ -4,22 +4,29 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Buscar venta</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create")" class="btn btn btn-info">
+        Crear Nuevo
+        <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+    </a>
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
-    <tr>
+    <tr class="steven">
         <th>
-            @Html.DisplayNameFor(model => model.fecha)
+            <span>Fecha de Venta</span>
+            @*@Html.DisplayNameFor(model => model.fecha)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Empleado.IdEmpleado)
+            <span>Nombre Empleado</span>
+            @*@Html.DisplayNameFor(model => model.Empleado)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Persona.Cedula)
-        </th>
+          <span>Nombre del cliente</span>
+           @* @Html.DisplayNameFor(model => model.Persona)*@
+            </a>
         <th></th>
     </tr>
 
@@ -29,10 +36,10 @@
             @Html.DisplayFor(modelItem => item.fecha)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Empleado.IdEmpleado)
+            @Html.DisplayFor(modelItem => item.Empleado.Persona.nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Persona.Cedula)
+            @Html.DisplayFor(modelItem => item.Persona.nombre)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IdVenta }) |

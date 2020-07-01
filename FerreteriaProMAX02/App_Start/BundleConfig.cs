@@ -39,6 +39,7 @@ namespace FerreteriaProMAX02
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                 "~/Content/sb-admin-2.min.css",
+                   "~/Content/Site.css",
                 "~/Content/sb-admin-2.css",
                 "~/Content/alertify.core.css",
                  "~/Content/alertify.default.css",
