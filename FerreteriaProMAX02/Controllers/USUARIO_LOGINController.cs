@@ -163,25 +163,60 @@ namespace FerreteriaProMAX02.Controllers
             }
 
             USUARIO_LOGIN uSUARIO_LOGIN = db.USUARIO_LOGIN.Find(m.USUARIO_LOGINL(usuario, contraseña));
-            var result = false;
+            var result = 0;
+            //Session["time"] = 0;
+            //Session["fecha"] = 0;
             if (uSUARIO_LOGIN == null)
             {
-                return View();
+                if (Session["time"] == null)
+                {
+                    Session["time"] = 1;
+                }
+                else { 
+                    Session["time"] = (int) Session["time"] + 1;
+                }
+                if ((int) Session["time"] == 4)
+                {
+                    Session["fecha"] = DateTime.Now;
+                }
+                if (Session["fecha"] == null)
+                {
+                    result = 2;
+                }
+                else { 
+                    var loginDate = (DateTime) Session["fecha"];
+                    if ((int) Session["time"] > 3 && DateTime.Now < loginDate.AddMinutes(5))
+                    {
+                        result = 3;
+                    }
+                    else if ((int)Session["time"] > 3 && DateTime.Now > loginDate.AddMinutes(5))
+                    {
+                        Session["time"] = 0;
+                        result = 2;
+                    }
+                    else {
+                        result = 2;
+                    }
+                }
             }
-            Session["id"] = uSUARIO_LOGIN.IdUsuario;
-
-            Empleado empleado = db.Empleadoes.Find(m.BuscarEmpleadoU((int)Session["id"]));
-            Session["idempleado"] = empleado.IdEmpleado;
-            DetalleRole Rolesdetail = db.DetalleRoles.Find(m.BuscarRolU((int)Session["id"]));
-            Session["Idroles"] = Rolesdetail.IdRoles;
-            result = true;
+            else
+            {
+                Session["id"] = uSUARIO_LOGIN.IdUsuario;
+                Empleado empleado = db.Empleadoes.Find(m.BuscarEmpleadoU((int)Session["id"]));
+                Session["idempleado"] = empleado.IdEmpleado;
+                DetalleRole Rolesdetail = db.DetalleRoles.Find(m.BuscarRolU((int)Session["id"]));
+                Session["Idroles"] = Rolesdetail.IdRoles;
+                result = 1;
+            }
             switch (result)
             {
-                case true:
+                case 1:
                     return RedirectToAction("Index", "Home");
-                case false:
+                case 2:
                     ModelState.AddModelError("", "Intento de inicio de sesión no válido.");
-                    return View("Login", "USUARIO_LOGIN");
+                    return View();
+                case 3:
+                    return View("Lockout");
                 default:
                     return View();
             }

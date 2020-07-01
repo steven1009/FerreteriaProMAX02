@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -10,7 +11,7 @@ using FerreteriaProMAX02.Models;
 
 namespace FerreteriaProMAX02.Controllers
 {
-    public class VentasController : Controller
+      public class VentasController : Controller
     {
         private FerreteriaDBEntities db = new FerreteriaDBEntities();
         private Metodos.Metodos m = new Metodos.Metodos();
@@ -255,7 +256,7 @@ namespace FerreteriaProMAX02.Controllers
 
         //}
         [HttpPost]
-        public ActionResult GuardarVenta(DateTime fecha, string Cedula, string idEmpleado, string idPago, string total1, List<DetalleVenta> ListadoDetalle)
+        public ActionResult GuardarVenta(DateTime fecha, string Cedula, string idEmpleado, string IdPago, string total1, List<DetalleVenta> ListadoDetalle)
         {
             string mensaje = "";
             decimal iva = 0;
@@ -293,7 +294,8 @@ namespace FerreteriaProMAX02.Controllers
                 venta1.idEmpleado = Int32.Parse(idEmpleado);
                 db.Ventas.Add(venta1);
                 db.SaveChanges();
-                decimal tdescuento = (decimal)0;
+                decimal tdescuento = (decimal) 0;
+                decimal tsubtotal = (decimal) 0;
                 int indexv = m.ObtenerVentaT();
                 foreach (var data in ListadoDetalle)
                 {
@@ -302,6 +304,7 @@ namespace FerreteriaProMAX02.Controllers
                     decimal descuento = Convert.ToDecimal(data.Descuento.ToString());
                     tdescuento = tdescuento + descuento;
                     decimal subtotal = Convert.ToDecimal(data.SubTOTAL.ToString()) + descuento;
+                    tsubtotal = subtotal + tsubtotal;
                     iva = (subtotal - descuento) * (decimal)0.15;
                     total = subtotal + iva;
                     DetalleVenta detalleVenta = new DetalleVenta();
@@ -318,9 +321,10 @@ namespace FerreteriaProMAX02.Controllers
 
                 }
                 Factura factura = new Factura();
-                factura.IdPago = 1;
+                factura.IdPago = Convert.ToInt32(IdPago);
                 factura.idVenta = indexv;
                 factura.Fecha = fecha;
+                factura.subtotal = tsubtotal;
                 factura.Descuento = tdescuento;
                 factura.Iva = (Convert.ToDecimal(total1) - tdescuento) * (decimal)0.15;
                 factura.Total = (float)(Convert.ToDecimal(total1) + (Convert.ToDecimal(total1) - tdescuento) * (decimal)0.15);
