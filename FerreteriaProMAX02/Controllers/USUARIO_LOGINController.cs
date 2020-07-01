@@ -8,9 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using FerreteriaProMAX02.Models;
 using Microsoft.Ajax.Utilities;
+using static FerreteriaProMAX02.FilterConfig;
 
 namespace FerreteriaProMAX02.Controllers
 {
+    [AuthorizationFilter]
     public class USUARIO_LOGINController : Controller
     {
         private FerreteriaDBEntities db = new FerreteriaDBEntities();
@@ -25,24 +27,35 @@ namespace FerreteriaProMAX02.Controllers
         // GET: USUARIO_LOGIN/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["id"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Login", "Usuario_Login");
             }
-            USUARIO_LOGIN uSUARIO_LOGIN = db.USUARIO_LOGIN.Find(id);
-            if (uSUARIO_LOGIN == null)
+            else if (!Session["id"].ToString().Equals("0"))
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                USUARIO_LOGIN uSUARIO_LOGIN = db.USUARIO_LOGIN.Find(id);
+                if (uSUARIO_LOGIN == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(uSUARIO_LOGIN);
             }
-            return View(uSUARIO_LOGIN);
+            else
+            {
+                return RedirectToAction("Login", "Usuario_Login");
+            }
         }
 
         // GET: USUARIO_LOGIN/Create
         public ActionResult Create()
         {
-            ViewBag.idPersona = new SelectList(db.Personas, "idPersona", "Cedula");
-            ViewBag.idPersona = new SelectList(db.Personas, "idPersona", "Cedula");
-            return View();
+             ViewBag.idPersona = new SelectList(db.Personas, "idPersona", "Cedula");
+             ViewBag.idPersona = new SelectList(db.Personas, "idPersona", "Cedula");
+             return View();
         }
 
         // POST: USUARIO_LOGIN/Create
@@ -133,6 +146,7 @@ namespace FerreteriaProMAX02.Controllers
             }
             base.Dispose(disposing);
         }
+        [AllowAnonymous]
         public ActionResult Login()
         {
             if (Session["id"] == null)
@@ -159,13 +173,11 @@ namespace FerreteriaProMAX02.Controllers
         {
             if (usuario.IsNullOrWhiteSpace() | contraseña.IsNullOrWhiteSpace())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View();
             }
 
             USUARIO_LOGIN uSUARIO_LOGIN = db.USUARIO_LOGIN.Find(m.USUARIO_LOGINL(usuario, contraseña));
             var result = 0;
-            //Session["time"] = 0;
-            //Session["fecha"] = 0;
             if (uSUARIO_LOGIN == null)
             {
                 if (Session["time"] == null)
