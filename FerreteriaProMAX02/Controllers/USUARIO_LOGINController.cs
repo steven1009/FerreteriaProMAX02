@@ -172,7 +172,7 @@ namespace FerreteriaProMAX02.Controllers
                 {
                     Session["time"] = 1;
                 }
-                else { 
+                else {
                     Session["time"] = (int) Session["time"] + 1;
                 }
                 if ((int) Session["time"] == 4)
@@ -183,7 +183,7 @@ namespace FerreteriaProMAX02.Controllers
                 {
                     result = 2;
                 }
-                else { 
+                else {
                     var loginDate = (DateTime) Session["fecha"];
                     if ((int) Session["time"] > 3 && DateTime.Now < loginDate.AddMinutes(5))
                     {
@@ -206,6 +206,7 @@ namespace FerreteriaProMAX02.Controllers
                 Session["idempleado"] = empleado.IdEmpleado;
                 DetalleRole Rolesdetail = db.DetalleRoles.Find(m.BuscarRolU((int)Session["id"]));
                 Session["Idroles"] = Rolesdetail.IdRoles;
+                Session["time"] = 0;
                 result = 1;
             }
             switch (result)
