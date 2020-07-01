@@ -4,13 +4,19 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Detalle de Venta </h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create")" class="btn btn-primary">
+        Crear Nuevo
+        <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+    </a>
+
+
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
-    <tr>
+    <tr class="steven">
         <th>
             @Html.DisplayNameFor(model => model.Cantidad)
         </th>
