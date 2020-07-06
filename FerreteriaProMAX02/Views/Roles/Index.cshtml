@@ -7,10 +7,14 @@
 <h2>Registro de Roles</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create")" class="btn btn btn-info">
+        Crear Nuevo Rol
+        <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+    </a>
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
-    <tr>
+    <tr class="steven">
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>

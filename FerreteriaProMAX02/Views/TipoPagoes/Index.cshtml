@@ -4,13 +4,17 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Tipo de Pagos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create")" class="btn btn btn-info">
+        Nuevo Tipo de pago
+        <span class="glyphicon glyphicon-move" aria-hidden="true"></span>
+    </a>
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
-    <tr>
+    <tr class="steven">
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>

@@ -347,6 +347,7 @@
     <Content Include="Scripts\sb-admin-2.min.js" />
     <Content Include="Scripts\script\jquery.js" />
     <Content Include="Scripts\script\jquery.min.js" />
+    <Content Include="Scripts\Validacion.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

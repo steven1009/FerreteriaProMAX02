@@ -4,10 +4,14 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Registro de Personas</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create")" class="btn btn btn-info">
+        Crear Nueva Persona
+        <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+    </a>
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
     <tr class="steven">
@@ -18,16 +22,20 @@
             @Html.DisplayNameFor(model => model.Cedula)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nombre)
+            <span>Nombre</span>
+            @*@Html.DisplayNameFor(model => model.nombre)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Primer_Apellido)
+            <span>Primer Apellido</span>
+            @*@Html.DisplayNameFor(model => model.Primer_Apellido)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Segund_Apellido)
+            <span>Segundo Apellido</span>
+            @*@Html.DisplayNameFor(model => model.Segund_Apellido)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Fecha_nacimiento)
+            <span>Fecha Nacimiento</span>
+            @*@Html.DisplayNameFor(model => model.Fecha_nacimiento)*@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Telefono)
@@ -39,7 +47,8 @@
             @Html.DisplayNameFor(model => model.Sexo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Direccion)
+            <span>Dirección</span>
+            @*@Html.DisplayNameFor(model => model.Direccion)*@
         </th>
         <th></th>
     </tr>
