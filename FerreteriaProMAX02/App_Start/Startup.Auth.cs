@@ -1,10 +1,6 @@
 ﻿using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace FerreteriaProMAX02
 {
@@ -16,8 +12,8 @@ namespace FerreteriaProMAX02
                 new CookieAuthenticationOptions
                 {
 
-                // YOUR LOGIN PATH
-                LoginPath = new PathString("/Usuario_Login/Login")
+                    // YOUR LOGIN PATH
+                    LoginPath = new PathString("/Usuario_Login/Login")
                 }
             );
         }

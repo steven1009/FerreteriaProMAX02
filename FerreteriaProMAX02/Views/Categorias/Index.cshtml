@@ -4,13 +4,16 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Registro de Categoria</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create")" class="btn btn-primary">
+        Crear nueva Categoria
+        <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+    </a>
 </p>
 <table class="table">
-    <tr>
+    <tr class="steven">
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>

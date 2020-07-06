@@ -1,15 +1,15 @@
-﻿using System;
+﻿using FerreteriaProMAX02.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using FerreteriaProMAX02.Models;
+using static FerreteriaProMAX02.FilterConfig;
 
 namespace FerreteriaProMAX02.Controllers
 {
+    [AuthorizationFilter]
     public class CompraProdProvsController : Controller
     {
         private FerreteriaDBEntities db = new FerreteriaDBEntities();

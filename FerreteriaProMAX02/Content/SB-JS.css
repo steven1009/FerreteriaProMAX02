@@ -14,7 +14,7 @@
     max-width: 350px;
     padding: 15px;
     margin: auto;
-    background: linear-gradient(rgb(255, 106, 0), rgba(40%, 20%, 60%, 50%));
+    background: linear-gradient(rgb(128, 128, 128), rgba(4%, 20%, 60%, 50%));
     border-radius:8px;
     /*background-color: #427fa0;*/
     radial-gradient: 1px;
@@ -27,7 +27,9 @@
         color:dodgerblue;
         font-family: 'Open Sans', sans-serif;
     }
-
+    .h2{
+        color:white;
+    }
 .form-signin .checkbox {
     font-weight: 700px;
 }

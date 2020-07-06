@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using FerreteriaProMAX02.Models;
+using Microsoft.Ajax.Utilities;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using FerreteriaProMAX02.Models;
-using Microsoft.Ajax.Utilities;
 using static FerreteriaProMAX02.FilterConfig;
 
 namespace FerreteriaProMAX02.Controllers
@@ -53,9 +50,9 @@ namespace FerreteriaProMAX02.Controllers
         // GET: USUARIO_LOGIN/Create
         public ActionResult Create()
         {
-             ViewBag.idPersona = new SelectList(db.Personas, "idPersona", "Cedula");
-             ViewBag.idPersona = new SelectList(db.Personas, "idPersona", "Cedula");
-             return View();
+            ViewBag.idPersona = new SelectList(db.Personas, "idPersona", "Cedula");
+            ViewBag.idPersona = new SelectList(db.Personas, "idPersona", "Cedula");
+            return View();
         }
 
         // POST: USUARIO_LOGIN/Create
@@ -184,10 +181,11 @@ namespace FerreteriaProMAX02.Controllers
                 {
                     Session["time"] = 1;
                 }
-                else {
-                    Session["time"] = (int) Session["time"] + 1;
+                else
+                {
+                    Session["time"] = (int)Session["time"] + 1;
                 }
-                if ((int) Session["time"] == 4)
+                if ((int)Session["time"] == 4)
                 {
                     Session["fecha"] = DateTime.Now;
                 }
@@ -195,9 +193,10 @@ namespace FerreteriaProMAX02.Controllers
                 {
                     result = 2;
                 }
-                else {
-                    var loginDate = (DateTime) Session["fecha"];
-                    if ((int) Session["time"] > 3 && DateTime.Now < loginDate.AddMinutes(5))
+                else
+                {
+                    var loginDate = (DateTime)Session["fecha"];
+                    if ((int)Session["time"] > 3 && DateTime.Now < loginDate.AddMinutes(5))
                     {
                         result = 3;
                     }
@@ -206,7 +205,8 @@ namespace FerreteriaProMAX02.Controllers
                         Session["time"] = 0;
                         result = 2;
                     }
-                    else {
+                    else
+                    {
                         result = 2;
                     }
                 }

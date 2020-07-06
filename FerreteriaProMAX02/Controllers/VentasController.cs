@@ -1,18 +1,15 @@
-﻿using System;
+﻿using FerreteriaProMAX02.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
-using System.Data.SqlTypes;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using FerreteriaProMAX02.Models;
 
 namespace FerreteriaProMAX02.Controllers
 {
-      public class VentasController : Controller
-      {
+    public class VentasController : Controller
+    {
         private FerreteriaDBEntities db = new FerreteriaDBEntities();
         private Metodos.Metodos m = new Metodos.Metodos();
         // GET: Ventas
@@ -27,7 +24,8 @@ namespace FerreteriaProMAX02.Controllers
                 var ventas = db.Ventas.Include(v => v.Empleado).Include(v => v.Persona);
                 return View(ventas.ToList());
             }
-            else {
+            else
+            {
                 return RedirectToAction("Login", "Usuario_Login");
             }
         }
@@ -56,7 +54,7 @@ namespace FerreteriaProMAX02.Controllers
             {
                 return RedirectToAction("Login", "Usuario_Login");
             }
-            
+
         }
 
         // GET: Ventas/Create
@@ -76,7 +74,7 @@ namespace FerreteriaProMAX02.Controllers
             {
                 return RedirectToAction("Login", "Usuario_Login");
             }
-            
+
         }
 
         // POST: Ventas/Create
@@ -107,7 +105,7 @@ namespace FerreteriaProMAX02.Controllers
             {
                 return RedirectToAction("Login", "Usuario_Login");
             }
-            
+
         }
 
         // GET: Ventas/Edit/5
@@ -136,7 +134,7 @@ namespace FerreteriaProMAX02.Controllers
             {
                 return RedirectToAction("Login", "Usuario_Login");
             }
-            
+
         }
 
         // POST: Ventas/Edit/5
@@ -166,7 +164,7 @@ namespace FerreteriaProMAX02.Controllers
             {
                 return RedirectToAction("Login", "Usuario_Login");
             }
-            
+
         }
 
         // GET: Ventas/Delete/5
@@ -193,7 +191,7 @@ namespace FerreteriaProMAX02.Controllers
             {
                 return RedirectToAction("Login", "Usuario_Login");
             }
-            
+
         }
 
         // POST: Ventas/Delete/5
@@ -216,7 +214,7 @@ namespace FerreteriaProMAX02.Controllers
             {
                 return RedirectToAction("Login", "Usuario_Login");
             }
-            
+
         }
 
         protected override void Dispose(bool disposing)
@@ -244,7 +242,7 @@ namespace FerreteriaProMAX02.Controllers
             {
                 return RedirectToAction("Login", "Usuario_Login");
             }
-            
+
         }
 
         // POST: Ventas/Create
@@ -342,7 +340,7 @@ namespace FerreteriaProMAX02.Controllers
             {
                 return RedirectToAction("Login", "Usuario_Login");
             }
-            
+
         }
 
         [HttpPost]
@@ -365,7 +363,7 @@ namespace FerreteriaProMAX02.Controllers
             {
                 return RedirectToAction("Login", "Usuario_Login");
             }
-            
+
         }
         [HttpPost]
         public ActionResult GuardarVenta(DateTime fecha, string Cedula, string idEmpleado, string IdPago, string total1, List<DetalleVenta> ListadoDetalle)

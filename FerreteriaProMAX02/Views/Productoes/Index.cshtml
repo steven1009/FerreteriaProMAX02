@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-@*@Styles.Render("~/Content/css");*@
+@Styles.Render("~/Content/css");
 <h2>Productos</h2>
 
 <p>
@@ -21,16 +21,18 @@
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Stok)
+                <span>Stock</span>
+                @*@Html.DisplayNameFor(model => model.Stok)*@
+            </th>
+            <th >
+                <span style="text-align:center">Precios Unitarios</span>
+                @*@Html.DisplayNameFor(model => model.PrecioU)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PrecioU)
+                @Html.DisplayNameFor(model => model.Categoria)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Categoria.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Marca.Nombre)
+                @Html.DisplayNameFor(model => model.Marca)
             </th>
             <th></th>
         </tr>
@@ -54,9 +56,9 @@
                     @Html.DisplayFor(modelItem => item.Marca.Nombre)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.IdProducto }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.IdProducto }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.IdProducto })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.IdProducto }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.IdProducto }) |
+                    @Html.ActionLink("Borrar", "Delete", new { id = item.IdProducto })
                 </td>
             </tr>
         }

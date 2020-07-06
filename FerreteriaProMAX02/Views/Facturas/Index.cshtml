@@ -4,13 +4,17 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Registro de Factura</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create")" class="btn btn btn-info">
+        Crear Nueva Factura
+        <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+    </a>
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
-    <tr>
+    <tr class="steven">
         <th>
             @Html.DisplayNameFor(model => model.Total)
         </th>

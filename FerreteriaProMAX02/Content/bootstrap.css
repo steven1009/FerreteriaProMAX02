@@ -187,6 +187,7 @@ table {
     background-color: #EAC7FE ;
     border-collapse: collapse;
     border-spacing: 0;
+    text-align:center;
 }
 .steven {
     background-color: #F5B155;
@@ -261,6 +262,7 @@ th {
   .table td,
   .table th {
     background-color: #fff !important;
+    text-align:center;
   }
   .table-bordered th,
   .table-bordered td {
@@ -2388,6 +2390,7 @@ th {
   line-height: 1.42857143;
   vertical-align: top;
   border-top: 1px solid #ddd;
+  text-align:center;
 }
 .table > thead > tr > th {
   vertical-align: bottom;

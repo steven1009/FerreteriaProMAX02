@@ -73,7 +73,7 @@ namespace FerreteriaProMAX02.Metodos
             {
                 return r;
             }
-            r = (int) testCMD.ExecuteScalar();
+            r = (int)testCMD.ExecuteScalar();
             PubsConn.Close();
             return r;
         }
@@ -251,11 +251,11 @@ namespace FerreteriaProMAX02.Metodos
                     da.Fill(dt);
                 }
                 var proveedor = from item in dt.AsEnumerable()
-                              select new proveedore
-                              {
-                                  Nombre = Convert.ToString(item["Nombre"]),
-                                  TipoProveedor = Convert.ToString(item["TipoProveedor"])
-                              };
+                                select new proveedore
+                                {
+                                    Nombre = Convert.ToString(item["Nombre"]),
+                                    TipoProveedor = Convert.ToString(item["TipoProveedor"])
+                                };
                 return proveedor.ToList();
             }
 

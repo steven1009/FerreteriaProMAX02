@@ -23,7 +23,7 @@ namespace FerreteriaProMAX02
                 }
 
                 // Check for authorization
-                if (HttpContext.Current.Session["id"] == null|| HttpContext.Current.Session["id"].ToString().Equals("0"))
+                if (HttpContext.Current.Session["id"] == null || HttpContext.Current.Session["id"].ToString().Equals("0"))
                 {
                     filterContext.Result = new RedirectToRouteResult(
             new RouteValueDictionary {{ "Controller", "Usuario_login" },

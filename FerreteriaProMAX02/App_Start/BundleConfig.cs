@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace FerreteriaProMAX02
 {
@@ -23,10 +22,10 @@ namespace FerreteriaProMAX02
 
 
 
-                         bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/scripts/jquery.validate.min.js",
-                        "~/scripts//jquery.validate.unobtrusive.js",
-                        "~/Scripts/jquery.validate*"));
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+           "~/scripts/jquery.validate.min.js",
+           "~/scripts//jquery.validate.unobtrusive.js",
+           "~/Scripts/jquery.validate*"));
 
             // Utilice la versión de desarrollo de Modernizr para desarrollar y obtener información. De este modo, estará
             // para la producción, use la herramienta de compilación disponible en https://modernizr.com para seleccionar solo las pruebas que necesite.
