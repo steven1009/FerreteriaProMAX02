@@ -5,7 +5,29 @@
 }
 
 
+    <script>
+    function cedula() {
+        var val1 = document.getElementById("ced").value;
+        var cadena = val1;
+        var tam = val1.toString().length;
+        var val2 = val1.replace(/[^A-Za-z0-9]/g, '')
+        $("#ced").val(val2);
+        if (val1) {
+            console.info("hola Aaron");
+        }
+        if (tam <= 13) {
+            var val3 = val2.replace(/[abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ!#$%^&*/()]/g, "");
+        $("#ced").val(val3);
+        }
+        else
+        {
+            var val3 = cadena.substring(0, tam - 1) + val2.replace(/[0123456789abcdefghijklmnñopqrstuvwxyz]/g, "");
+            $("#ced").val(val3);
+        }
 
+
+    }
+    </script>
 
 @using (Html.BeginForm())
 {
@@ -26,7 +48,7 @@
         <div class="form-group col-md-10">
             @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control", required = "requered", min = "14", MaxLength = "14"  } })
+                @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control", required = "requered",id="ced", min=14,MaxLength=14, oninput = "cedula()" } })
                 @Html.ValidationMessageFor(model => model.Cedula, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -34,7 +56,7 @@
         <div class="form-group col-md-10">
             @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", required = "requered" } })
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", required = "requered", oninput = "this.value = this.value.replace(/[^a-zA-Z]/g,'')", MaxLength = "1000" } })
                 @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -42,7 +64,7 @@
         <div class="form-group col-md-10">
             @Html.Label("Primer Apellido", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Primer_Apellido, new { htmlAttributes = new { @class = "form-control", required = "requered" } })
+                @Html.EditorFor(model => model.Primer_Apellido, new { htmlAttributes = new { @class = "form-control", required = "requered", oninput = "this.value = this.value.replace(/[^a-zA-Z]/g,'')", MaxLength = "30" } })
                 @Html.ValidationMessageFor(model => model.Primer_Apellido, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -50,7 +72,7 @@
         <div class="form-group col-md-10">
             @Html.Label("Segundo Apellido", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Segund_Apellido, new { htmlAttributes = new { @class = "form-control", required = "requered" } })
+                @Html.EditorFor(model => model.Segund_Apellido, new { htmlAttributes = new { @class = "form-control", required = "requered", oninput = "this.value = this.value.replace(/[^a-zA-Z]/g,'')", MaxLength = "30" } })
                 @Html.ValidationMessageFor(model => model.Segund_Apellido, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -76,7 +98,7 @@
 
             @Html.LabelFor(model => model.Correo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control", required = "requered" } })
+                @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control", required = "requered", type="correo" } })
                 @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -93,7 +115,7 @@
 
             @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control", required = "requered" } })
+                @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control", required = "requered", oninput = "this.value = this.value.replace(/[^a-zA-Za-9]/g,'')", MaxLength = "80" } })
                 @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
             </div>
         </div>

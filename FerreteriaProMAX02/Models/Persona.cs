@@ -11,7 +11,8 @@ namespace FerreteriaProMAX02.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Persona
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,6 +27,7 @@ namespace FerreteriaProMAX02.Models
         public int idPersona { get; set; }
         public int Codigo { get; set; }
         public string Cedula { get; set; }
+        [StringLength(50)]
         public string nombre { get; set; }
         public string Primer_Apellido { get; set; }
         public string Segund_Apellido { get; set; }

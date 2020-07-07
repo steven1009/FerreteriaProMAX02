@@ -44,7 +44,7 @@ namespace FerreteriaProMAX02.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdMarca,Nombre")] Marca marca)
+        public ActionResult Create([Bind(Include = "Nombre")] Marca marca)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +76,7 @@ namespace FerreteriaProMAX02.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdMarca,Nombre")] Marca marca)
+        public ActionResult Edit([Bind(Include = "Nombre")] Marca marca)
         {
             if (ModelState.IsValid)
             {

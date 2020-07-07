@@ -55,6 +55,7 @@ else if (!Session["id"].ToString().Equals("0"))
                             <li>
                                 <a href='@(Url.Action("Index", "Productoes"))'><i class="fa fa-search fa-fw" style="color:black"></i>Buscar Producto</a>
                                 <a href='@(Url.Action("Index", "IdDetalleProvds"))'><i class="fa fa-product-hunt fa-fw" style="color:black"></i>Detalle Producto</a>
+                                <a href='@(Url.Action("Index", "Marcas"))'><i class="fa fa-recycle" style="color:black"></i>Marcas</a>
                             </li>
                         </ul>
                         @*/.nav-second-level*@
@@ -83,8 +84,12 @@ else if (!Session["id"].ToString().Equals("0"))
                     <li>
                         <a href='@(Url.Action("Index", "Personas"))'><i class="fa fa-user fa-fw"></i>Clientes</a>
                     </li>
+
                     <li>
-                        <a href='@(Url.Action("Index", "Empleadoes"))'><i class="fa fa-user fa-fw"></i>Vendedores</a>
+                        <a> <i class="fa fa-faucet fa-fw"></i>cargos<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-leve3">
+                            <a href='@(Url.Action("Index", "Empleadoes"))'><i class="fa fa-user fa-fw"></i>Empleados</a>
+
                     </li>
                     <li>
                         <a><i class="fa fa-wrench fa-fw"></i> Cobros y Pagos<span class="fa arrow"></span></a>

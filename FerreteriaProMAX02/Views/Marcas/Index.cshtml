@@ -4,10 +4,14 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Crear Marca </h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create")" class="btn btn btn-info">
+        Crear Marca
+        <span class="glyphicon glyphicon-modal-window" aria-hidden="true"></span>
+    </a>
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
     <tr class="steven">
@@ -23,9 +27,9 @@
             @Html.DisplayFor(modelItem => item.Nombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdMarca }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdMarca }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdMarca })
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdMarca }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.IdMarca }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.IdMarca })
         </td>
     </tr>
 }
