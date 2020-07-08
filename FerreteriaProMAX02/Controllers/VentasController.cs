@@ -15,30 +15,15 @@ namespace FerreteriaProMAX02.Controllers
         // GET: Ventas
         public ActionResult Index()
         {
-            if (Session["id"] == null)
-            {
-                return RedirectToAction("Login", "Usuario_Login");
-            }
-            else if (!Session["id"].ToString().Equals("0"))
-            {
+
                 var ventas = db.Ventas.Include(v => v.Empleado).Include(v => v.Persona);
                 return View(ventas.ToList());
-            }
-            else
-            {
-                return RedirectToAction("Login", "Usuario_Login");
-            }
         }
 
         // GET: Ventas/Details/5
         public ActionResult Details(int? id)
         {
-            if (Session["id"] == null)
-            {
-                return RedirectToAction("Login", "Usuario_Login");
-            }
-            else if (!Session["id"].ToString().Equals("0"))
-            {
+
                 if (id == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -49,32 +34,17 @@ namespace FerreteriaProMAX02.Controllers
                     return HttpNotFound();
                 }
                 return View(venta);
-            }
-            else
-            {
-                return RedirectToAction("Login", "Usuario_Login");
-            }
+
 
         }
 
         // GET: Ventas/Create
         public ActionResult Create()
         {
-            if (Session["id"] == null)
-            {
-                return RedirectToAction("Login", "Usuario_Login");
-            }
-            else if (!Session["id"].ToString().Equals("0"))
-            {
+
                 ViewBag.idEmpleado = new SelectList(db.Empleadoes, "IdEmpleado", "IdEmpleado");
                 ViewBag.idPersona = new SelectList(db.Personas, "idPersona", "Cedula");
                 return View();
-            }
-            else
-            {
-                return RedirectToAction("Login", "Usuario_Login");
-            }
-
         }
 
         // POST: Ventas/Create
@@ -84,12 +54,6 @@ namespace FerreteriaProMAX02.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdVenta,fecha,idPersona,idEmpleado")] Venta venta)
         {
-            if (Session["id"] == null)
-            {
-                return RedirectToAction("Login", "Usuario_Login");
-            }
-            else if (!Session["id"].ToString().Equals("0"))
-            {
                 if (ModelState.IsValid)
                 {
                     db.Ventas.Add(venta);
@@ -100,23 +64,13 @@ namespace FerreteriaProMAX02.Controllers
                 ViewBag.idEmpleado = new SelectList(db.Empleadoes, "IdEmpleado", "IdEmpleado", venta.idEmpleado);
                 ViewBag.idPersona = new SelectList(db.Personas, "idPersona", "Cedula", venta.idPersona);
                 return View(venta);
-            }
-            else
-            {
-                return RedirectToAction("Login", "Usuario_Login");
-            }
+            
 
         }
 
         // GET: Ventas/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (Session["id"] == null)
-            {
-                return RedirectToAction("Login", "Usuario_Login");
-            }
-            else if (!Session["id"].ToString().Equals("0"))
-            {
                 if (id == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -129,11 +83,7 @@ namespace FerreteriaProMAX02.Controllers
                 ViewBag.idEmpleado = new SelectList(db.Empleadoes, "IdEmpleado", "IdEmpleado", venta.idEmpleado);
                 ViewBag.idPersona = new SelectList(db.Personas, "idPersona", "Cedula", venta.idPersona);
                 return View(venta);
-            }
-            else
-            {
-                return RedirectToAction("Login", "Usuario_Login");
-            }
+            
 
         }
 
@@ -144,12 +94,6 @@ namespace FerreteriaProMAX02.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdVenta,fecha,idPersona,idEmpleado")] Venta venta)
         {
-            if (Session["id"] == null)
-            {
-                return RedirectToAction("Login", "Usuario_Login");
-            }
-            else if (!Session["id"].ToString().Equals("0"))
-            {
                 if (ModelState.IsValid)
                 {
                     db.Entry(venta).State = EntityState.Modified;
@@ -159,11 +103,7 @@ namespace FerreteriaProMAX02.Controllers
                 ViewBag.idEmpleado = new SelectList(db.Empleadoes, "IdEmpleado", "IdEmpleado", venta.idEmpleado);
                 ViewBag.idPersona = new SelectList(db.Personas, "idPersona", "Cedula", venta.idPersona);
                 return View(venta);
-            }
-            else
-            {
-                return RedirectToAction("Login", "Usuario_Login");
-            }
+            
 
         }
 
@@ -199,22 +139,16 @@ namespace FerreteriaProMAX02.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (Session["id"] == null)
-            {
-                return RedirectToAction("Login", "Usuario_Login");
-            }
-            else if (!Session["id"].ToString().Equals("0"))
+            try
             {
                 Venta venta = db.Ventas.Find(id);
                 db.Ventas.Remove(venta);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            else
-            {
-                return RedirectToAction("Login", "Usuario_Login");
+            catch (Exception e) {
+                return View();
             }
-
         }
 
         protected override void Dispose(bool disposing)
@@ -368,24 +302,23 @@ namespace FerreteriaProMAX02.Controllers
         [HttpPost]
         public ActionResult GuardarVenta(DateTime fecha, string Cedula, string idEmpleado, string IdPago, string total1, List<DetalleVenta> ListadoDetalle)
         {
-            if (Session["id"] == null)
-            {
-                return RedirectToAction("Login", "Usuario_Login");
-            }
-            else if (!Session["id"].ToString().Equals("0"))
-            {
+            
                 string mensaje = "";
                 decimal iva = 0;
                 int idVenta = 0;
                 decimal total = 0;
 
-                if (Cedula == "" || idEmpleado == "")
+                if (Cedula == "" || idEmpleado == "" || IdPago=="")
                 {
                     if (Cedula == "") mensaje = "ERROR CON CEDULA DEL CLIENTE";
                     if (idEmpleado == "") mensaje = "ERROR EN EL ID DEL CLIENTE";
+                    if (IdPago == "") mensaje = "ERROR EN EL ID DEL TIPO DE PAGO";
                 }
                 else
                 {
+
+                    try
+                    {
                     Venta venta = db.Ventas.Find(m.ObtenerVentaT());
                     if (venta == null)
                     {
@@ -395,16 +328,17 @@ namespace FerreteriaProMAX02.Controllers
                     {
                         idVenta = (int)venta.IdVenta + 1;
                     }
-                    Persona persona = db.Personas.Find(m.BuscarCedulaP(Cedula));
-                    Venta venta1 = new Venta();
-                    venta1.fecha = fecha;
-                    venta1.idPersona = persona.idPersona;
-                    venta1.idEmpleado = Int32.Parse(idEmpleado);
-                    db.Ventas.Add(venta1);
-                    db.SaveChanges();
-                    decimal tdescuento = (decimal)0;
-                    decimal tsubtotal = (decimal)0;
-                    int indexv = m.ObtenerVentaT();
+                        Persona persona = db.Personas.Find(m.BuscarCedulaP(Cedula));
+                        Venta venta1 = new Venta();
+                        venta1.fecha = fecha;
+                        venta1.idPersona = persona.idPersona;
+                        venta1.idEmpleado = Int32.Parse(idEmpleado);
+                        db.Ventas.Add(venta1);
+                        db.SaveChanges();
+                        decimal tdescuento = (decimal)0;
+                        decimal tsubtotal = (decimal)0;
+                        int indexv = m.ObtenerVentaT();
+
                     foreach (var data in ListadoDetalle)
                     {
                         int idProducto = Convert.ToInt32(data.IdProducto.ToString());
@@ -425,6 +359,8 @@ namespace FerreteriaProMAX02.Controllers
                         detalleVenta.Total = total;
                         db.DetalleVentas.Add(detalleVenta);
                         db.SaveChanges();
+
+                        
                     }
                     Factura factura = new Factura();
                     factura.IdPago = Convert.ToInt32(IdPago);
@@ -438,14 +374,13 @@ namespace FerreteriaProMAX02.Controllers
                     db.Facturas.Add(factura);
                     db.SaveChanges();
                     mensaje = "VENTA GUARDADA CON EXITO...";
+                    }
+                    catch (Exception e)
+                    {
+                    }
                 }
                 return Json(mensaje);
 
-            }
-            else
-            {
-                return RedirectToAction("Login", "Usuario_Login");
-            }
         }
     }
 }
